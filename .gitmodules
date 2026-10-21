@@ -1,0 +1,4 @@
+[submodule "CorridorKey2.0"]
+	path = CorridorKey2.0
+	url = https://github.com/nikopueringer/CorridorKey2.0.git
+	branch = master

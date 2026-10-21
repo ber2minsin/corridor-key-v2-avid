@@ -1,8 +1,8 @@
-# --- Local Avid / CorridorKey trees (do not commit) ---
+# --- Local Avid SDK (do not commit) ---
 AVX2SDK/
 AVX2SDK_*/
-CorridorKey2.0/
-third_party/
+# CorridorKey2.0 is a git submodule (nikopueringer/CorridorKey2.0).
+CorridorKey2.0.local/
 
 # --- Avid Media Composer installer / extracts dropped in repo ---
 Media_Composer*/
