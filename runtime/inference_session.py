@@ -44,6 +44,29 @@ class InferenceSession:
         self._work = Path(tempfile.gettempdir()) / "CorridorKeyAVX"
         self._work.mkdir(parents=True, exist_ok=True)
 
+    def _ensure_weights(self) -> None:
+        """Fetch CorridorKey weights via the official upstream download script if missing."""
+        marker = self.ck_root / "weights" / "corridorkey_v2.safetensors"
+        if marker.is_file():
+            return
+        script = self.ck_root / "scripts" / "download_weights.py"
+        if not script.is_file():
+            raise RuntimeError(
+                f"CorridorKey weights missing at {marker} and download script not found at {script}"
+            )
+        log.warning("Weights missing — running official download_weights.py (several GB)...")
+        import subprocess
+        import sys
+
+        cmd = [sys.executable, str(script), "--package_root", str(self.ck_root)]
+        proc = subprocess.run(cmd, check=False)
+        if proc.returncode != 0 or not marker.is_file():
+            raise RuntimeError(
+                "Failed to download CorridorKey weights. "
+                "Re-run packaging\\post_install.ps1 or scripts\\sync_corridorkey.ps1 with network access."
+            )
+        log.info("Weight download finished: %s", marker)
+
     def load(self) -> None:
         if self.model is not None:
             return
@@ -58,6 +81,7 @@ class InferenceSession:
                 "No NVIDIA GPU with CUDA was found. CorridorKey needs an NVIDIA graphics card."
             )
 
+        self._ensure_weights()
         paths = RuntimePaths.from_package(self.ck_root)
         paths.validate()
         prepare_runtime_environment(paths)

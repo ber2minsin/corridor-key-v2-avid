@@ -1,7 +1,7 @@
 # Build Setup-CorridorKeyAVX.exe (Inno Setup). Developer / release machine only.
 param(
     [switch]$SkipBundle,
-    [switch]$FromScratch
+    [switch]$SkipPluginBuild
 )
 
 $ErrorActionPreference = "Stop"
@@ -20,16 +20,30 @@ if (-not $iscc) {
     throw "Inno Setup 6 not found. Install with: winget install JRSoftware.InnoSetup"
 }
 
+# Ensure CorridorKey2.0 submodule is checked out (source only; weights via Setup)
+if (-not (Test-Path (Join-Path $RepoRoot "CorridorKey2.0\scripts\download_weights.py"))) {
+    Write-Host "Initializing CorridorKey2.0 submodule..."
+    Push-Location $RepoRoot
+    git submodule update --init --recursive CorridorKey2.0
+    if ($LASTEXITCODE -ne 0) { throw "git submodule update failed" }
+    Pop-Location
+}
+
+if (-not $SkipPluginBuild) {
+    & (Join-Path $PSScriptRoot "build_plugin.ps1")
+    if ($LASTEXITCODE -ne 0) { throw "build_plugin.ps1 failed" }
+}
+
 if (-not $SkipBundle) {
-    $bundleArgs = @{ }
-    if ($FromScratch) { $bundleArgs.FromScratch = $true }
-    & (Join-Path $Packaging "bundle_runtime.ps1") @bundleArgs
+    & (Join-Path $Packaging "bundle_runtime.ps1")
+    if ($LASTEXITCODE -ne 0) { throw "bundle_runtime.ps1 failed" }
 }
 
 $payloadAvx = Join-Path $Packaging "payload\CorridorKey.avx"
 $payloadPy = Join-Path $Packaging "payload\python\python.exe"
-$payloadCk = Join-Path $Packaging "payload\CorridorKey2.0\weights\corridorkey_v2.safetensors"
-foreach ($need in @($payloadAvx, $payloadPy, $payloadCk)) {
+$payloadCk = Join-Path $Packaging "payload\CorridorKey2.0\scripts\download_weights.py"
+$payloadPost = Join-Path $Packaging "payload\post_install.ps1"
+foreach ($need in @($payloadAvx, $payloadPy, $payloadCk, $payloadPost)) {
     if (-not (Test-Path $need)) {
         throw "Payload incomplete (missing $need). Re-run without -SkipBundle."
     }
@@ -45,4 +59,4 @@ if (-not (Test-Path $exe)) { throw "Expected output missing: $exe" }
 $mb = [math]::Round((Get-Item $exe).Length / 1MB, 1)
 Write-Host ""
 Write-Host "Installer ready: $exe ($mb MB)"
-Write-Host "Give users that file. They double-click it — no .bat, no Python."
+Write-Host "Slim package - models download when the user runs Setup (or on first use)."
