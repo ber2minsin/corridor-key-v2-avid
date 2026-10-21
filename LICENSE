@@ -1,0 +1,43 @@
+CorridorKey for Avid (AVX2 Plugin) — License Notice
+====================================================
+
+This repository contains an Avid Media Composer AVX2 host plugin ("the shim")
+and packaging scripts that connect to CorridorKey 2.0.
+
+1) Plugin shim and packaging code in this repository
+----------------------------------------------------
+Unless otherwise noted in a file header, the C++ plugin sources, IPC runtime
+wrapper, installer scripts, and documentation authored for this Avid integration
+are provided free of charge for personal and community use.
+
+You may use, copy, and redistribute this plugin for free.
+You may NOT sell this plugin or charge for access to it without a separate
+written agreement.
+
+2) CorridorKey 2.0 engine, weights, and name
+--------------------------------------------
+CorridorKey 2.0 (code, model weights, and branding) remains under the license
+published by Corridor Digital / the CorridorKey 2.0 project:
+
+  https://github.com/nikopueringer/CorridorKey2.0
+
+In summary (always read the upstream LICENSE for the binding terms):
+- You may use CorridorKey to process images/video, including commercial footage.
+- You may NOT repackage CorridorKey and sell it.
+- You may NOT offer CorridorKey inference as a paid API service without agreement.
+- Keep the CorridorKey name on forks and releases.
+- Commercial integration into a sold software product requires written agreement
+  with Corridor Digital (contact@corridordigital.com).
+- Organizations above the revenue threshold stated in the upstream LICENSE need
+  commercial seats.
+
+3) Avid AVX SDK
+---------------
+The Avid AVX2 Software Developers’ Kit is proprietary to Avid Technology, Inc.
+and is used under Avid’s evaluation (or commercial) license. The SDK is NOT
+redistributed by this project. Build machines must obtain it from Avid Developer.
+
+4) Third-party notices
+----------------------
+See CorridorKey2.0/THIRD_PARTY_NOTICES.md for foundation model notices
+(C-RADIO, MoGe, RVM, and others).
