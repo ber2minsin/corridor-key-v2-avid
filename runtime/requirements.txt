@@ -1,0 +1,16 @@
+# Bundled into the one-click installer at packaging time.
+# Torch / torchvision CUDA wheels are installed separately by bundle_runtime.ps1
+# (cu128 index). Do not pip-install CPU torch here.
+numpy>=1.24
+imageio>=2.31
+imageio-ffmpeg>=0.4
+opencv-python-headless>=4.8
+pywin32>=306
+Pillow>=10.0
+safetensors>=0.4
+tqdm>=4.66
+einops>=0.7
+timm>=0.9
+transformers>=4.40
+huggingface_hub>=0.20
+
