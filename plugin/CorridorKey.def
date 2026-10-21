@@ -1,0 +1,5 @@
+EXPORTS
+	ACFRegisterPlugin		@1
+	ACFRegisterComponent	@2
+	ACFGetClassFactory		@3
+	ACFCanUnloadNow		@4
