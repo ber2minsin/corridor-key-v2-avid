@@ -6,8 +6,6 @@ Product overview: [corridorkey.com](https://corridorkey.com/)
 
 This project is not affiliated with Avid or Corridor Digital.
 
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/ber2minsin)
-
 ---
 
 ## Requirements
@@ -118,6 +116,4 @@ See [LICENSE](LICENSE).
 
 Corridor Key 2.0 engine and weights remain under Corridor Digital’s terms ([upstream](https://github.com/nikopueringer/CorridorKey2.0)). Avid and Media Composer are trademarks of Avid Technology, Inc.
 
-Support this community build:
-
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://www.buymeacoffee.com/ber2minsin)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/ber2minsin)
