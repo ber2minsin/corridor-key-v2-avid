@@ -39,10 +39,14 @@ If you skipped the download task, the worker will attempt the same official `dow
 
 ## Use in Media Composer
 
+![Effect Palette Image category with Corridor Key 2.0](docs/images/mc-effect-palette.png)
+
 1. Place a green or blue screen clip on the timeline.
 2. Open **Tools → Effect Palette** (`Ctrl+8`).
 3. Category **Image** → drag **Corridor Key 2.0** onto the clip.
 4. Open **Effect Editor**.
+
+![Corridor Key 2.0 Effect Editor with Input, Processed, Matte, and Checkerboard outputs](docs/images/effect-editor.png)
 
 ### Controls
 
