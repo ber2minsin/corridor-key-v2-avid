@@ -68,5 +68,5 @@ if ($failed -gt 0) {
     exit 1
 }
 Write-Host "All automated tests PASSED" -ForegroundColor Green
-Write-Host "Next: install Media Composer, run Install-CorridorKey.bat, check Effect Palette > Key > CorridorKey"
+Write-Host "Next: install Media Composer, run Setup-CorridorKey-2.0.exe, check Effect Palette -> Image -> Corridor Key 2.0"
 exit 0

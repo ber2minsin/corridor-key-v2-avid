@@ -98,7 +98,7 @@ begin
   if DirExists(ExpandConstant('{commonpf}\Avid\Avid Media Composer')) then
   begin
     ForceDirectories(McAvxDir);
-    FileCopy(Src, McAvxDir + '\CorridorKey.avx', False);
+    CopyFile(Src, McAvxDir + '\CorridorKey.avx', False);
   end;
 end;
 

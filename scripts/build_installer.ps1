@@ -7,7 +7,7 @@ param(
 $ErrorActionPreference = "Stop"
 $RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $Packaging = Join-Path $RepoRoot "packaging"
-$Iss = Join-Path $Packaging "CorridorKeyAVX.iss"
+$Iss = Join-Path $Packaging "CorridorKey-2.0.iss"
 $Dist = Join-Path $Packaging "dist"
 
 $isccCandidates = @(
