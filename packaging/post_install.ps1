@@ -18,7 +18,9 @@ $InstallRoot = $InstallRoot.TrimEnd('\')
 $pythonDir = Join-Path $InstallRoot "python"
 $py = Join-Path $pythonDir "python.exe"
 $ck = Join-Path $InstallRoot "CorridorKey2.0"
-$runtimeReq = Join-Path $InstallRoot "runtime\requirements.txt"
+$runtimeDir = Join-Path $InstallRoot "runtime"
+$runtimeReq = Join-Path $runtimeDir "requirements.txt"
+$serverPy = Join-Path $runtimeDir "server.py"
 $logDir = Join-Path $env:LOCALAPPDATA "CorridorKeyAVX\logs"
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 $log = Join-Path $logDir "post_install.log"
@@ -29,11 +31,61 @@ function Log([string]$Line) {
     Write-Host $Line
 }
 
+function Assert-NotJunction([string]$Path, [string]$Label) {
+    if (-not (Test-Path $Path)) { throw "$Label missing: $Path" }
+    $item = Get-Item $Path -Force
+    if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+        throw ("$Label is still a junction/symlink to '{0}'. " +
+               "Uninstall Corridor Key 2.0, delete '{1}' if it remains, then re-run Setup-CorridorKey-2.0.exe.") -f `
+            (($item.Target -join ', ')), $Path
+    }
+}
+
+function Ensure-HubPin {
+    # transformers / C-RADIO need huggingface-hub 0.34–0.x; never float to 2.x
+    & $py -m pip install --upgrade "huggingface_hub>=0.34,<1.0"
+    if ($LASTEXITCODE -ne 0) { throw "Failed to pin huggingface_hub<1.0" }
+}
+
+function Test-WorkerReady {
+    Write-Step "Verifying worker can start"
+    # Exact spawn shape the AVX plugin uses (absolute server.py path, no PYTHONPATH).
+    & $py $serverPy --help
+    if ($LASTEXITCODE -ne 0) {
+        throw "runtime\server.py failed to start (embeddable Python import path). Reinstall required."
+    }
+    $code = @"
+import sys
+from pathlib import Path
+runtime = Path(r'''$runtimeDir''')
+sys.path.insert(0, str(runtime))
+import numpy, torch, huggingface_hub, transformers, ipc_protocol, inference_session
+hub = huggingface_hub.__version__
+if int(hub.split('.')[0]) >= 1:
+    raise SystemExit(f'huggingface_hub {hub} is too new; need <1.0')
+if not torch.cuda.is_available():
+    raise SystemExit('torch.cuda.is_available() is False; NVIDIA driver / CUDA torch required')
+print('VERIFY_OK', 'numpy', numpy.__version__, 'torch', torch.__version__, 'hub', hub)
+"@
+    $tmp = Join-Path $env:TEMP "ckavx_verify_worker.py"
+    Set-Content -Path $tmp -Value $code -Encoding UTF8
+    try {
+        & $py $tmp
+        if ($LASTEXITCODE -ne 0) { throw "Worker verification failed (exit $LASTEXITCODE)" }
+    } finally {
+        Remove-Item $tmp -Force -ErrorAction SilentlyContinue
+    }
+}
+
 Start-Transcript -Path (Join-Path $logDir "post_install_transcript.txt") -Append | Out-Null
 try {
     Log "InstallRoot=$InstallRoot"
     if (-not (Test-Path $py)) { throw "Bundled python missing: $py" }
     if (-not (Test-Path $ck)) { throw "CorridorKey2.0 missing: $ck" }
+    if (-not (Test-Path $serverPy)) { throw "runtime\server.py missing: $serverPy" }
+
+    Assert-NotJunction $pythonDir "python"
+    Assert-NotJunction $ck "CorridorKey2.0"
 
     # Ensure embeddable Python can use site-packages / pip
     Get-ChildItem $pythonDir -Filter "python*._pth" -ErrorAction SilentlyContinue | ForEach-Object {
@@ -63,15 +115,21 @@ try {
     Write-Step "Installing CorridorKey AVX runtime requirements"
     if (Test-Path $runtimeReq) {
         & $py -m pip install -r $runtimeReq
+        if ($LASTEXITCODE -ne 0) { throw "pip install runtime requirements failed" }
     }
     $ckReq = Join-Path $ck "requirements.txt"
     if (Test-Path $ckReq) {
         & $py -m pip install -r $ckReq
+        if ($LASTEXITCODE -ne 0) { throw "pip install CorridorKey2.0 requirements failed" }
     }
+
+    # Re-pin after requirement files (they may float huggingface-hub to 2.x)
+    Write-Step "Pinning huggingface_hub for transformers / C-RADIO"
+    Ensure-HubPin
 
     if (-not $SkipWeights) {
         Write-Step "Downloading CorridorKey 2.0 weights (~5 GB) via official script"
-        & $py -m pip install --upgrade "huggingface_hub>=0.20"
+        Ensure-HubPin
         & $py (Join-Path $ck "scripts\download_weights.py") --package_root $ck
         if ($LASTEXITCODE -ne 0) { throw "download_weights.py failed" }
         $w = Join-Path $ck "weights\corridorkey_v2.safetensors"
@@ -80,6 +138,8 @@ try {
     } else {
         Log "Skipped weight download; first Media Composer render will fetch them."
     }
+
+    Test-WorkerReady
 
     Write-Step "Done"
     Log "post_install completed successfully"

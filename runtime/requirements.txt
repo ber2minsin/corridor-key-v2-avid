@@ -12,5 +12,6 @@ tqdm>=4.66
 einops>=0.7
 timm>=0.9
 transformers>=4.40
-huggingface_hub>=0.20
+# transformers / C-RADIO break on huggingface-hub 2.x
+huggingface_hub>=0.34,<1.0
 

@@ -11,6 +11,13 @@ import threading
 import traceback
 from pathlib import Path
 
+# Embeddable CPython uses a ._pth file that does not put the script directory on
+# sys.path, so sibling imports (ipc_protocol, inference_session) fail unless we
+# add it explicitly.
+_RUNTIME_DIR = Path(__file__).resolve().parent
+if str(_RUNTIME_DIR) not in sys.path:
+    sys.path.insert(0, str(_RUNTIME_DIR))
+
 import numpy as np
 
 from ipc_protocol import (

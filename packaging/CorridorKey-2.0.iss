@@ -124,6 +124,33 @@ begin
            mbError, MB_OK);
 end;
 
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+var
+  AppDir, Ps: String;
+  ResultCode: Integer;
+begin
+  // Older PowerShell installer left junctions into the build machine.
+  // Remove those reparse points so this Setup copies real trees.
+  AppDir := ExpandConstant('{app}');
+  Ps :=
+    'powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "' +
+    '$ErrorActionPreference=''Stop''; ' +
+    'foreach ($n in @(''python'',''CorridorKey2.0'')) { ' +
+    '  $p = Join-Path ''' + AppDir + ''' $n; ' +
+    '  if (Test-Path $p) { ' +
+    '    $i = Get-Item $p -Force; ' +
+    '    if ($i.Attributes -band [IO.FileAttributes]::ReparsePoint) { cmd /c rmdir ""$p"" } ' +
+    '  } ' +
+    '}"';
+  Exec('cmd.exe', '/c ' + Ps, '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  // Also try plain rmdir (safe on junctions; fails on non-empty real dirs — fine)
+  if DirExists(AppDir + '\python') then
+    Exec('cmd.exe', '/c rmdir "' + AppDir + '\python"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  if DirExists(AppDir + '\CorridorKey2.0') then
+    Exec('cmd.exe', '/c rmdir "' + AppDir + '\CorridorKey2.0"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  Result := '';
+end;
+
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   AvxDir: String;

@@ -201,7 +201,10 @@ bool IpcClient::SpawnWorker() {
     }
     ZeroMemory(&workerPi_, sizeof(workerPi_));
 
-    std::wstring workDir = root;
+    // Prefer runtime/ as cwd so relative imports also work if ._pth uses ".".
+    std::wstring workDir = root + L"\\runtime";
+    if (GetFileAttributesW(workDir.c_str()) == INVALID_FILE_ATTRIBUTES)
+        workDir = root;
     BOOL ok = CreateProcessW(
         nullptr,
         cmdBuf.data(),
