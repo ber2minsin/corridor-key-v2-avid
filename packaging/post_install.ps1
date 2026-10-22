@@ -1,5 +1,5 @@
-# Run by Setup-CorridorKeyAVX.exe after files are copied.
-# Installs Python deps (CUDA torch) and downloads CorridorKey weights via upstream script.
+# Run by Setup-CorridorKey-2.0.exe after files are copied.
+# Installs Python deps (CUDA torch) and downloads Corridor Key 2.0 weights via upstream script.
 param(
     [Parameter(Mandatory = $true)][string]$InstallRoot,
     [switch]$SkipTorch,
@@ -84,8 +84,8 @@ try {
     Write-Step "Done"
     Log "post_install completed successfully"
     Write-Host ""
-    Write-Host "CorridorKey for Avid is ready." -ForegroundColor Green
-    Write-Host "Fully quit and restart Media Composer, then apply CorridorKey from Effect Palette -> Image."
+    Write-Host "Corridor Key 2.0 is ready." -ForegroundColor Green
+    Write-Host "Fully quit and restart Media Composer, then apply Corridor Key 2.0 from Effect Palette -> Image."
 } catch {
     Log "ERROR: $_"
     Write-Host "Setup step failed: $_" -ForegroundColor Red

@@ -1,9 +1,9 @@
 @echo off
-:: Developer fallback installer (PowerShell). Prefer Setup-CorridorKeyAVX.exe from packaging\dist.
-:: Double-click Setup-CorridorKeyAVX.exe for the normal editor install path.
+:: Developer fallback installer (PowerShell). Prefer Setup-CorridorKey-2.0.exe from packaging\dist.
+:: Double-click Setup-CorridorKey-2.0.exe for the normal editor install path.
 
 setlocal
-set "EXE=%~dp0packaging\dist\Setup-CorridorKeyAVX.exe"
+set "EXE=%~dp0packaging\dist\Setup-CorridorKey-2.0.exe"
 if exist "%EXE%" (
   echo Found Setup EXE — launching that instead of the .bat path.
   echo.
@@ -11,7 +11,7 @@ if exist "%EXE%" (
   exit /b %ERRORLEVEL%
 )
 
-echo Setup-CorridorKeyAVX.exe not built yet.
+echo Setup-CorridorKey-2.0.exe not built yet.
 echo Building it requires: scripts\build_installer.ps1
 echo.
 echo Falling back to elevated PowerShell installer for developers...

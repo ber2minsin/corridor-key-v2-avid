@@ -113,7 +113,7 @@ $config = @{
     python_exe   = "C:\Program Files\CorridorKeyAVX\python\python.exe"
     server_py    = "C:\Program Files\CorridorKeyAVX\runtime\server.py"
     avx_path     = "C:\Program Files\Avid\AVX2_Plug-ins\CorridorKey.avx"
-    version      = "1.11.0"
+    version      = "2.0"
 } | ConvertTo-Json
 Set-Content -Path (Join-Path $OutDir "config.json") -Value $config -Encoding UTF8
 

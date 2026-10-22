@@ -1,4 +1,4 @@
-# Build Setup-CorridorKeyAVX.exe (Inno Setup). Developer / release machine only.
+# Build Setup-CorridorKey-2.0.exe (Inno Setup). Developer / release machine only.
 param(
     [switch]$SkipBundle,
     [switch]$SkipPluginBuild
@@ -54,7 +54,7 @@ New-Item -ItemType Directory -Force -Path $Dist | Out-Null
 & $iscc $Iss
 if ($LASTEXITCODE -ne 0) { throw "ISCC failed with exit $LASTEXITCODE" }
 
-$exe = Join-Path $Dist "Setup-CorridorKeyAVX.exe"
+$exe = Join-Path $Dist "Setup-CorridorKey-2.0.exe"
 if (-not (Test-Path $exe)) { throw "Expected output missing: $exe" }
 $mb = [math]::Round((Get-Item $exe).Length / 1MB, 1)
 Write-Host ""

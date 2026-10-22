@@ -14,7 +14,7 @@ $AvxDirMc = Join-Path $env:ProgramFiles "Avid\Avid Media Composer\AVX2_Plug-Ins"
 
 Write-Host ""
 Write-Host "========================================"
-Write-Host "  CorridorKey for Avid - Installer"
+Write-Host "  Corridor Key 2.0 - Installer"
 Write-Host "========================================"
 Write-Host ""
 

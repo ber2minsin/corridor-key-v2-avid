@@ -403,8 +403,8 @@ ACFMETHODIMP CCorridorKey_Effect::InternalQueryInterface(const acfIID& riid, voi
 ACFMETHODIMP CCorridorKey_Effect::GetEffectAttribute(
     const acfUID& id, IACFValue* value, IAVXEffectContext*, void*, void*, IAVXFrameContext*, void*)
 {
-    // Kept for hosts that honor it; MC still blacks FG if a 2nd input is defined,
-    // so 1.11 ships single-input only. See AVXATTR_Effect_SupportNoInputData.
+    // Kept for hosts that honor it; MC still blacks FG if a 2nd input is defined.
+    // Single-input only. See AVXATTR_Effect_SupportNoInputData.
     if (id == AVXATTR_Effect_SupportNoInputData) {
         if (!value)
             return ACF_E_POINTER;

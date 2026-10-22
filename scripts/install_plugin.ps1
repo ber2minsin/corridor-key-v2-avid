@@ -1,5 +1,5 @@
 # Developer helper: copy built .avx into Avid plug-ins folder and point at this repo.
-# End users should use Setup-CorridorKeyAVX.exe instead.
+# End users should use Setup-CorridorKey-2.0.exe instead.
 
 param(
     [string]$RepoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path

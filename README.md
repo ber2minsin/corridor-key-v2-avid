@@ -1,6 +1,6 @@
-# CorridorKey for Avid Media Composer
+# Corridor Key 2.0 for Avid Media Composer
 
-Community AVX2 plugin that runs [CorridorKey 2.0](https://github.com/nikopueringer/CorridorKey2.0) inside **Avid Media Composer** for AI green/blue screen keying.
+Community AVX2 plugin that runs [Corridor Key 2.0](https://github.com/nikopueringer/CorridorKey2.0) inside **Avid Media Composer** for AI green/blue screen keying.
 
 Product overview: [corridorkey.com](https://corridorkey.com/)
 
@@ -15,9 +15,9 @@ This project is not affiliated with Avid or Corridor Digital.
 - **Avid Media Composer** (Standard, Ultimate, or equivalent — not Media Composer First)
 - Internet access during Setup (or first use) to download model weights and CUDA PyTorch
 
-Editors do not need a separate Python install. The Setup wizard bundles a small Python runtime and fetches CorridorKey assets with the official upstream download script.
+Editors do not need a separate Python install. The Setup wizard bundles a small Python runtime and fetches Corridor Key assets with the official upstream download script.
 
-Approximate VRAM: about 4 GB up to 1440p, about 6 GB for 4K (same guidance as CorridorKey 2.0).
+Approximate VRAM: about 4 GB up to 1440p, about 6 GB for 4K (same guidance as Corridor Key 2.0).
 
 ---
 
@@ -25,11 +25,11 @@ Approximate VRAM: about 4 GB up to 1440p, about 6 GB for 4K (same guidance as Co
 
 1. Install and activate Media Composer; complete its first launch.
 2. Install a current NVIDIA driver; reboot if Windows requests it.
-3. Run **`Setup-CorridorKeyAVX.exe`** (release asset, or built under `packaging\dist\`).
-4. Approve UAC. On the tasks page, leave **Download CorridorKey 2.0 models and CUDA PyTorch** checked (recommended, about 6–8 GB).
+3. Run **`Setup-CorridorKey-2.0.exe`** (release asset, or built under `packaging\dist\`).
+4. Approve UAC. On the tasks page, leave **Download Corridor Key 2.0 models and CUDA PyTorch** checked (recommended, about 6–8 GB).
 5. Finish the wizard. Fully quit Media Composer if it was open, then start it again.
 
-Uninstall from **Settings → Apps → CorridorKey for Avid**.
+Uninstall from **Settings → Apps → Corridor Key 2.0**.
 
 If you skipped the download task, the worker will attempt the same official `download_weights.py` path on first effect use (network required).
 
@@ -39,7 +39,7 @@ If you skipped the download task, the worker will attempt the same official `dow
 
 1. Place a green or blue screen clip on the timeline.
 2. Open **Tools → Effect Palette** (`Ctrl+8`).
-3. Category **Image** → drag **CorridorKey** onto the clip.
+3. Category **Image** → drag **Corridor Key 2.0** onto the clip.
 4. Open **Effect Editor**.
 
 ### Controls
@@ -57,7 +57,7 @@ If you skipped the download task, the worker will attempt the same official `dow
 
 The first frame after apply may take up to about a minute while the model loads on the GPU. That is expected.
 
-If the effect is missing from the palette: quit Media Composer, confirm Setup completed, restart Media Composer, and re-apply the effect (remove any older CorridorKey instance from the clip first).
+If the effect is missing from the palette: quit Media Composer, confirm Setup completed, restart Media Composer, and re-apply the effect (remove any older Corridor Key instance from the clip first).
 
 Logs: `%LOCALAPPDATA%\CorridorKeyAVX\logs\`
 
@@ -100,13 +100,13 @@ scripts\run_all_tests.ps1
 | `scripts\sync_corridorkey.ps1` | `git submodule update` + official `download_weights.py` |
 | `scripts\sync_corridorkey.ps1 -Remote` | Move submodule to latest `origin/master`, then download weights |
 | `scripts\build_plugin.ps1` | Build `CorridorKey.avx` |
-| `scripts\build_installer.ps1` | Bundle slim payload and compile `Setup-CorridorKeyAVX.exe` |
+| `scripts\build_installer.ps1` | Bundle slim payload and compile `Setup-CorridorKey-2.0.exe` |
 | `scripts\deploy_plugin.ps1` | Copy built `.avx` into Avid folders (admin; MC must be quit) |
 | `packaging\post_install.ps1` | Same download/pip steps the Setup wizard runs |
 
-CorridorKey 2.0 is tracked as submodule `CorridorKey2.0` → [nikopueringer/CorridorKey2.0](https://github.com/nikopueringer/CorridorKey2.0). Weights are **not** vendored; they are fetched with `CorridorKey2.0/scripts/download_weights.py` (Hugging Face + foundation models).
+Corridor Key 2.0 is tracked as submodule `CorridorKey2.0` → [nikopueringer/CorridorKey2.0](https://github.com/nikopueringer/CorridorKey2.0). Weights are **not** vendored; they are fetched with `CorridorKey2.0/scripts/download_weights.py` (Hugging Face + foundation models).
 
-Installer output: `packaging\dist\Setup-CorridorKeyAVX.exe` (slim; not a multi-GB offline bundle).
+Installer output: `packaging\dist\Setup-CorridorKey-2.0.exe` (slim; not a multi-GB offline bundle).
 
 ---
 
@@ -114,6 +114,6 @@ Installer output: `packaging\dist\Setup-CorridorKeyAVX.exe` (slim; not a multi-G
 
 See [LICENSE](LICENSE).
 
-CorridorKey 2.0 engine and weights remain under Corridor Digital’s terms ([upstream](https://github.com/nikopueringer/CorridorKey2.0)). Avid and Media Composer are trademarks of Avid Technology, Inc.
+Corridor Key 2.0 engine and weights remain under Corridor Digital’s terms ([upstream](https://github.com/nikopueringer/CorridorKey2.0)). Avid and Media Composer are trademarks of Avid Technology, Inc.
 
 Support this community build: [buymeacoffee.com/ber2minsin](https://www.buymeacoffee.com/ber2minsin)

@@ -1,10 +1,10 @@
-# Full uninstall of CorridorKey for Avid (requires Administrator).
-# Prefer Windows Settings -> Apps -> CorridorKey for Avid when installed via Setup EXE.
+# Full uninstall of Corridor Key 2.0 for Avid (requires Administrator).
+# Prefer Windows Settings -> Apps -> Corridor Key 2.0 when installed via Setup EXE.
 
 #Requires -RunAsAdministrator
 $ErrorActionPreference = "Continue"
 
-Write-Host "Uninstalling CorridorKey for Avid..."
+Write-Host "Uninstalling Corridor Key 2.0..."
 
 foreach ($p in @(
     "$env:ProgramFiles\Avid\AVX2_Plug-ins\CorridorKey.avx",

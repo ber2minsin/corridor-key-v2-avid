@@ -50,5 +50,5 @@ Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
     }
 
 Write-Host ""
-Write-Host "Done. Start Media Composer. Effect Palette -> Key should show the new CorridorKey version."
+Write-Host "Done. Start Media Composer. Effect Palette -> Image -> Corridor Key 2.0."
 Write-Host "Remove any old CorridorKey from the clip, then drag the new one on again."

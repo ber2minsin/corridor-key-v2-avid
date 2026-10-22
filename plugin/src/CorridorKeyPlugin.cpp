@@ -8,15 +8,15 @@
 #include "CorridorKeyEffect.h"
 #include "CorridorKeyUIDs.h"
 
-static const acfUInt32 kEffectMajorVersion = 1;
-static const acfUInt32 kEffectMinorVersion = 11;
+static const acfUInt32 kEffectMajorVersion = 2;
+static const acfUInt32 kEffectMinorVersion = 0;
 
 static const acfWChar* sPluginVendor = L"CorridorKey Community";
 static const acfWChar* sPluginName = L"CorridorKey.avx";
 static const acfWChar* sPluginDescription =
-    L"CorridorKey 2.0 neural green/blue screen keyer for Avid Media Composer. "
+    L"Corridor Key 2.0 neural green/blue screen keyer for Avid Media Composer. "
     L"One-click keying, Time Awareness, Despill/Unmix, Alpha Hint, multi-output.";
-static const acfWChar* sComponentName = L"CorridorKey 1.11";
+static const acfWChar* sComponentName = L"Corridor Key 2.0";
 // Image = segment filter (same as FlipFlop/Fade). Key category made MC wire inputs like a keyer.
 static const acfWChar* sCategoryName = L"Image";
 

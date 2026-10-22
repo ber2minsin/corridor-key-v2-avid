@@ -1,8 +1,8 @@
-; Inno Setup 6 — Setup-CorridorKeyAVX.exe (slim; models downloaded at install time)
+; Inno Setup 6 — Setup-CorridorKey-2.0.exe (slim; models downloaded at install time)
 ; Build: scripts\build_installer.ps1
 
-#define MyAppName "CorridorKey for Avid"
-#define MyAppVersion "1.11.0"
+#define MyAppName "Corridor Key 2.0"
+#define MyAppVersion "2.0"
 #define MyAppPublisher "CorridorKey Community"
 #define MyAppURL "https://corridorkey.com/"
 
@@ -13,11 +13,11 @@ AppVersion={#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 DefaultDirName={autopf}\CorridorKeyAVX
-DefaultGroupName=CorridorKey for Avid
+DefaultGroupName=Corridor Key 2.0
 DisableProgramGroupPage=yes
 LicenseFile=..\LICENSE
 OutputDir=dist
-OutputBaseFilename=Setup-CorridorKeyAVX
+OutputBaseFilename=Setup-CorridorKey-2.0
 Compression=lzma2
 SolidCompression=yes
 DiskSpanning=no
@@ -36,7 +36,7 @@ WizardImageStretch=no
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
-Name: "downloadmodels"; Description: "Download CorridorKey 2.0 models and CUDA PyTorch now (~6–8 GB, recommended)"; Flags: checkedonce
+Name: "downloadmodels"; Description: "Download Corridor Key 2.0 models and CUDA PyTorch now (~6–8 GB, recommended)"; Flags: checkedonce
 Name: "desktopicon"; Description: "Create a desktop shortcut to the install folder"; Flags: unchecked
 
 [Files]
@@ -49,9 +49,9 @@ Source: "payload\post_install.ps1"; DestDir: "{app}"; Flags: ignoreversion
 Source: "payload\config.json"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Uninstall CorridorKey for Avid"; Filename: "{uninstallexe}"
-Name: "{group}\CorridorKeyAVX install folder"; Filename: "{app}"
-Name: "{autodesktop}\CorridorKeyAVX"; Filename: "{app}"; Tasks: desktopicon
+Name: "{group}\Uninstall Corridor Key 2.0"; Filename: "{uninstallexe}"
+Name: "{group}\Install folder"; Filename: "{app}"
+Name: "{autodesktop}\Corridor Key 2.0"; Filename: "{app}"; Tasks: desktopicon
 
 [Registry]
 Root: HKLM; Subkey: "Software\CorridorKeyAVX"; ValueType: string; ValueName: "InstallRoot"; ValueData: "{app}"; Flags: uninsdeletekey
@@ -150,7 +150,7 @@ begin
   begin
     MsgBox('After Setup finishes:' #13#10 +
            '1. Fully quit and restart Avid Media Composer.' #13#10 +
-           '2. Effect Palette -> Image -> CorridorKey.' #13#10 +
+           '2. Effect Palette -> Image -> Corridor Key 2.0.' #13#10 +
            '3. First use may still download assets if you skipped that task.' #13#10#13#10 +
            'Requires an NVIDIA GPU and internet for the model download.',
            mbInformation, MB_OK);
