@@ -117,5 +117,3 @@ Installer output: `packaging\dist\Setup-CorridorKey-2.0.exe` (slim; not a multi-
 See [LICENSE](LICENSE).
 
 Corridor Key 2.0 engine and weights remain under Corridor Digital’s terms ([upstream](https://github.com/nikopueringer/CorridorKey2.0)). Avid and Media Composer are trademarks of Avid Technology, Inc.
-
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/ber2minsin)
