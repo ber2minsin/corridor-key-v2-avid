@@ -91,7 +91,7 @@ You need:
 - Git, with the **CorridorKey2.0** submodule initialized
 
 ```powershell
-git clone --recurse-submodules <this-repo-url>
+git clone --recurse-submodules https://github.com/ber2minsin/corridor-key-v2-avid.git
 # or after clone:
 git submodule update --init --recursive
 
