@@ -1,0 +1,97 @@
+name: Feature request
+description: Propose a feature or improvement for the Avid plugin.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for **Avid Media Composer / AVX2** features and UX.
+        If the capability already exists only in [Corridor Key 2.0](https://github.com/nikopueringer/CorridorKey2.0), say so — that helps us prioritize porting vs inventing something new.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What do you want?
+      placeholder: Expose Temporal Window separately from Time Awareness in the Effect Editor.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      description: What are you trying to do in Media Composer today, and what gets in the way?
+      placeholder: I need to match a specific matte look from Resolve / another tool on the same plate.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How should this work in the Effect Palette / Effect Editor / install flow?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: upstream_has_feature
+    attributes:
+      label: Does Corridor Key 2.0 (original repository) already have this feature?
+      description: Upstream repo — https://github.com/nikopueringer/CorridorKey2.0
+      options:
+        - Yes — upstream already has it
+        - Partially — upstream has something related
+        - No — not in upstream (Avid-specific or new)
+        - Unsure / not checked
+    validations:
+      required: true
+
+  - type: input
+    id: upstream_commit
+    attributes:
+      label: Upstream commit, PR, or release (if applicable)
+      description: |
+        If upstream has the feature, link the commit, PR, tag, or docs that added it.
+        Example commit URL or SHA from nikopueringer/CorridorKey2.0.
+      placeholder: https://github.com/nikopueringer/CorridorKey2.0/commit/… or SHA / PR #
+    validations:
+      required: false
+
+  - type: textarea
+    id: upstream_notes
+    attributes:
+      label: How does it work upstream?
+      description: Brief notes on API, CLI flags, UI, or behavior we should mirror in Avid.
+      placeholder: Upstream exposes X via …; expected parity would be Effect Editor control Y.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How important is this for your workflow?
+      options:
+        - Blocker — cannot ship without it
+        - High — frequent need
+        - Medium — nice to have
+        - Low — occasional
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you already use, or other products/plugins that do this.
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Mockups, screenshots, sample settings, or related issues.
+    validations:
+      required: false

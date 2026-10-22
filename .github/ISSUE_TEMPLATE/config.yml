@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Corridor Key 2.0 (upstream)
+    url: https://github.com/nikopueringer/CorridorKey2.0
+    about: Engine, models, and non-Avid feature discussion for the original Corridor Key 2.0 project.
+  - name: Product overview
+    url: https://corridorkey.com/
+    about: Official Corridor Key product page.

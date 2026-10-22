@@ -1,0 +1,111 @@
+name: Bug report
+description: Something is broken or unexpected in the Avid Media Composer plugin.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Fill in as much as you can — reproduction steps matter most.
+        This tracker is for the **Avid AVX2 plugin**. Engine/model issues that also happen outside Media Composer belong upstream: [nikopueringer/CorridorKey2.0](https://github.com/nikopueringer/CorridorKey2.0).
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One or two sentences describing the problem.
+      placeholder: After applying Corridor Key 2.0, the first frame stays black until I scrub away and back.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps starting from a clean Media Composer session if possible.
+      placeholder: |
+        1. Fully quit and restart Media Composer.
+        2. Place a greenscreen clip on V1.
+        3. Effect Palette → Image → drag Corridor Key 2.0 onto the clip.
+        4. Set Mode to Auto, Output to Processed.
+        5. …
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      placeholder: What happened instead. Note any crash, hang, black frame, or wrong matte.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does this happen?
+      options:
+        - Always
+        - Often
+        - Sometimes
+        - Once
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Versions and hardware help a lot.
+      value: |
+        - Media Composer version:
+        - Windows version:
+        - NVIDIA GPU / driver:
+        - Plugin / Setup version (e.g. Corridor Key 2.0 Setup EXE, or git commit):
+        - Install path (default Program Files\CorridorKeyAVX?):
+    validations:
+      required: true
+
+  - type: dropdown
+    id: upstream
+    attributes:
+      label: Does this also happen outside Media Composer?
+      description: e.g. with the upstream Corridor Key 2.0 CLI / Comfy / standalone tools on the same footage.
+      options:
+        - Not tested
+        - No — Avid / plugin only
+        - Yes — also happens upstream / outside Avid
+        - Unsure
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and evidence
+      description: |
+        Paste relevant lines from `%LOCALAPPDATA%\CorridorKeyAVX\logs\` (plugin / worker).
+        Screenshots or a short screen recording of the Effect Editor + Composer window are welcome.
+      placeholder: Attach files below or paste log excerpts here.
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Timeline format, resolution, Time Awareness on/off, Mode/Output settings, Alpha Hint, etc.
+    validations:
+      required: false
