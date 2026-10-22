@@ -1,10 +1,12 @@
 # Corridor Key 2.0 for Avid Media Composer
+[![BuyMeACoffee](https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-yellow.svg)](https://buymeacoffee.com/ber2minsin)
 
 Community AVX2 plugin that runs [Corridor Key 2.0](https://github.com/nikopueringer/CorridorKey2.0) inside **Avid Media Composer** for AI green/blue screen keying.
 
 Product overview: [corridorkey.com](https://corridorkey.com/)
 
 This project is not affiliated with Avid or Corridor Digital.
+
 
 ---
 
